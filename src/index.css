@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@theme {
+  --color-mgm-red: #C90028;
+  --color-mgm-red-hover: #A50020;
+  --color-mgm-charcoal: #20262D;
+  --color-mgm-deep: #15191E;
+  --color-mgm-light-grey: #F2F5F9;
+  --color-mgm-soft-grey: #DCE2E9;
+  --color-mgm-muted: #64748B;
+  --color-mgm-gold: #C5A059;
+
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Montserrat', system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  html {
+    font-family: var(--font-sans);
+  }
+  body {
+    background-color: #F2F5F9;
+    color: #20262D;
+    font-family: var(--font-sans);
+  }
+  h1, h2, h3, .font-heading {
+    font-family: var(--font-serif);
+  }
+}
+
+/* Skeleton Loading Shimmer Keyframes and Classes */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    #E5E7EB 0%,
+    #F8FAFC 50%,
+    #E5E7EB 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite ease-in-out;
+}
+
+.skeleton-shimmer-dark {
+  background: linear-gradient(
+    90deg,
+    #20262D 0%,
+    #2E3640 50%,
+    #20262D 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-shimmer,
+  .skeleton-shimmer-dark {
+    animation: none;
+    opacity: 0.8;
+  }
+}
+
+/* Custom Luxury Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.35);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C90028;
+}

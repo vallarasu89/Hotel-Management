@@ -1,0 +1,42 @@
+/* Reusable MGM Skeleton Loading Design System */
+@keyframes mgmShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.mgm-skeleton-base {
+  background: linear-gradient(
+    90deg,
+    #E5E7EB 0%,
+    #F8FAFC 50%,
+    #E5E7EB 100%
+  );
+  background-size: 200% 100%;
+  animation: mgmShimmer 1.5s infinite ease-in-out;
+  display: inline-block;
+  line-height: 1;
+}
+
+.mgm-skeleton-dark {
+  background: linear-gradient(
+    90deg,
+    #20262D 0%,
+    #2C353F 50%,
+    #20262D 100%
+  );
+  background-size: 200% 100%;
+  animation: mgmShimmer 1.5s infinite ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mgm-skeleton-base,
+  .mgm-skeleton-dark {
+    animation: none;
+    opacity: 0.85;
+  }
+}
+
