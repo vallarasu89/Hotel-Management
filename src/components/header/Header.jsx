@@ -42,7 +42,7 @@ export const Header = () => {
   const dropdownRef = useRef(null);
   const moreRef = useRef(null);
 
-  const { user, isAuthenticated, logout, login } = useAuth();
+  const { user, isAuthenticated, logout } = useAuth();
   const { wishlist } = useWishlist();
   const toast = useToast();
 
@@ -111,12 +111,6 @@ export const Header = () => {
     setAccountDropdownOpen(false);
     toast.info('You have been signed out of MGM Privilege.');
     navigate('/');
-  };
-
-  const handleQuickLogin = () => {
-    login('vallarasu@example.com');
-    setAccountDropdownOpen(false);
-    toast.success('Welcome back, Vallarasu! Signed in as Privilege Gold Member.');
   };
 
   // Primary links visible on lg and xl
@@ -379,7 +373,7 @@ export const Header = () => {
 
               {/* Account Dropdown Menu */}
               {accountDropdownOpen && (
-                <div className="absolute right-0 top-full mt-2 w-72 sm:w-80 max-w-[calc(100vw-2rem)] bg-[#15191E] border border-white/15 rounded-2xl shadow-2xl p-3 z-50 text-white animate-fadeIn">
+                <div className={`absolute right-0 top-full mt-2 ${isAuthenticated ? 'w-72 sm:w-80 p-3' : 'w-56 sm:w-60 p-2.5'} max-w-[calc(100vw-2rem)] bg-[#15191E] border border-white/15 rounded-2xl shadow-2xl z-50 text-white animate-fadeIn`}>
                   {isAuthenticated ? (
                     <div>
                       {/* User Info Header */}
@@ -450,15 +444,11 @@ export const Header = () => {
                       </div>
                     </div>
                   ) : (
-                    <div className="space-y-2.5 p-1">
-                      <div className="text-xs text-gray-300 px-2 py-1 leading-relaxed">
-                        Sign in to access exclusive MGM Privilege rates & reward points.
-                      </div>
-
+                    <div className="p-1 space-y-2">
                       <Link
                         to="/login"
                         onClick={() => setAccountDropdownOpen(false)}
-                        className="w-full bg-[#C90028] hover:bg-[#A50020] text-white py-2 px-3 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-colors"
+                        className="w-full bg-[#C90028] hover:bg-[#A50020] text-white py-2.5 px-3 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-colors shadow-sm"
                       >
                         <LogIn className="w-4 h-4" />
                         <span>Sign In</span>
@@ -467,22 +457,11 @@ export const Header = () => {
                       <Link
                         to="/signup"
                         onClick={() => setAccountDropdownOpen(false)}
-                        className="w-full bg-white/10 hover:bg-white/20 text-white py-2 px-3 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-colors"
+                        className="w-full bg-white/10 hover:bg-white/20 text-white py-2.5 px-3 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-colors"
                       >
                         <UserPlus className="w-4 h-4" />
                         <span>Join Privilege Club</span>
                       </Link>
-
-                      <div className="pt-2 border-t border-white/10">
-                        <button
-                          type="button"
-                          onClick={handleQuickLogin}
-                          className="w-full text-center py-1.5 text-[11px] font-bold text-amber-300 hover:underline flex items-center justify-center gap-1 cursor-pointer"
-                        >
-                          <Sparkles className="w-3.5 h-3.5 text-[#C90028]" />
-                          <span>One-Click Demo Login</span>
-                        </button>
-                      </div>
                     </div>
                   )}
                 </div>
@@ -576,14 +555,12 @@ export const Header = () => {
                   >
                     Sign In
                   </Link>
-                  <button
-                    type="button"
-                    onClick={handleQuickLogin}
+                  <Link
+                    to="/signup"
                     className="flex-1 text-center py-2 px-3 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1"
                   >
-                    <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-                    <span>Demo</span>
-                  </button>
+                    Join
+                  </Link>
                 </div>
               </div>
             )}

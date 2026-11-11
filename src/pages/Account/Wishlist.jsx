@@ -74,7 +74,7 @@ export const Wishlist = () => {
                   <p className="text-xs text-gray-500 max-w-md mx-auto leading-relaxed">
                     Your saved luxury properties and signature suites are safely synchronized with your MGM Privilege Club account. Sign in to view and reserve your dream vacations.
                   </p>
-                  <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+                  <div className="pt-2 flex items-center justify-center">
                     <Link
                       to="/login"
                       className="inline-flex items-center gap-2 bg-[#C90028] text-white px-6 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider shadow-md hover:bg-[#A50020] transition-colors"
@@ -82,14 +82,6 @@ export const Wishlist = () => {
                       <LogIn className="w-4 h-4" />
                       <span>Member Sign In</span>
                     </Link>
-                    <button
-                      type="button"
-                      onClick={() => login('vallarasu@example.com')}
-                      className="inline-flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-[#20262D] px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
-                    >
-                      <Sparkles className="w-4 h-4 text-[#C90028]" />
-                      <span>Demo Login as Vallarasu</span>
-                    </button>
                   </div>
                 </div>
               ) : loading ? (

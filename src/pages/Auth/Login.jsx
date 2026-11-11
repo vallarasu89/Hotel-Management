@@ -1,25 +1,22 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { Mail, Lock, LogIn, Sparkles, ArrowRight } from 'lucide-react';
+import { Mail, Lock, LogIn, ArrowRight } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+import { useToast } from '../../context/ToastContext';
 import mgmLogo from '../../assets/mgm-logo.png';
 
 export const Login = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
+  const toast = useToast();
 
-  const [email, setEmail] = useState('vallarasu@example.com');
-  const [password, setPassword] = useState('password123');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     login(email, password);
-    navigate('/account');
-  };
-
-  const handleDemoLogin = () => {
-    login('vallarasu@example.com', 'demoPass');
     navigate('/account');
   };
 
@@ -48,21 +45,6 @@ export const Login = () => {
             </p>
           </div>
 
-          {/* Quick Demo One-Click Access Button */}
-          <button
-            type="button"
-            onClick={handleDemoLogin}
-            className="w-full bg-amber-50 hover:bg-amber-100 border border-amber-300 text-amber-900 rounded-xl p-3 text-xs font-bold flex items-center justify-center gap-2 transition-colors cursor-pointer"
-          >
-            <Sparkles className="w-4 h-4 text-amber-600" />
-            <span>Instant One-Click Demo Sign In</span>
-          </button>
-
-          <div className="relative flex items-center justify-center">
-            <span className="h-px bg-gray-200 w-full" />
-            <span className="bg-white px-3 text-xs text-gray-400 font-semibold uppercase absolute">Or</span>
-          </div>
-
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="text-xs font-bold text-gray-700 block mb-1">Email Address</label>
@@ -82,9 +64,13 @@ export const Login = () => {
             <div>
               <div className="flex justify-between items-center mb-1">
                 <label className="text-xs font-bold text-gray-700">Password</label>
-                <a href="#forgot" onClick={(e) => { e.preventDefault(); alert('Demo password reset link simulated.'); }} className="text-[11px] text-[#C90028] hover:underline">
+                <button
+                  type="button"
+                  onClick={() => toast.info('Password reset instructions have been sent if this email is registered.')}
+                  className="text-[11px] text-[#C90028] hover:underline cursor-pointer"
+                >
                   Forgot password?
-                </a>
+                </button>
               </div>
               <div className="relative">
                 <input
